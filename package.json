@@ -1,0 +1,34 @@
+{
+  "name": "indicis-api",
+  "version": "1.0.0",
+  "description": "API com os principais indices da economia utilizanos no mercado de renda fixa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jurusbr/indicis-api-js.git"
+  },
+  "keywords": [
+    "rendafixa",
+    "bond",
+    "price",
+    "cdi",
+    "selic",
+    "ipca"
+  ],
+  "author": "Gustavo Albuquerque Barros",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jurusbr/indicis-api-js/issues"
+  },
+  "homepage": "https://github.com/jurusbr/indicis-api-js#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "mongodb": "^3.2.3"
+  }
+}
