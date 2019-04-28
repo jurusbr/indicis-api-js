@@ -8,7 +8,7 @@ class Db{
 		this.mongoClient = mongodb.MongoClient;
         this.ObjectID = mongodb.ObjectID;
 
-        this.mongoURL = process.env.URL;
+        this.mongoURL = process.env.MONGO;
 
         logger.config(`URL do mongodb ${this.mongoURL}`)
 	}
