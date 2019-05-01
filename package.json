@@ -2,9 +2,10 @@
   "name": "indicis-api",
   "version": "1.0.0",
   "description": "API com os principais indices da economia utilizanos no mercado de renda fixa",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js" 
   },
   "repository": {
     "type": "git",
