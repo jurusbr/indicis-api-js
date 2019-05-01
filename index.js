@@ -18,9 +18,9 @@ app.use(cors());
 const httpRouter = require("./src/router/httpRouter");
 
 app.use(express.static(__dirname + "/public"));
-app.use('/api',httpRouter);
+app.use('/',httpRouter);
 
-app.all('/api', function(req, res, next) {
+app.all('/', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
@@ -34,5 +34,5 @@ const server = app.listen(PORT, () => {
 
   host = host==="::"?"localhost":host;
 
-  logger.info(`Example app listening at http://${host}:${port}/api`);
+  logger.info(`Example app listening at http://${host}:${port}/`);
 });
