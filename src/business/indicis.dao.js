@@ -39,7 +39,7 @@ class IndicisDAO{
         });       
     }
 
-    getInterpolateFutureDiCurve(collectionName, days){  
+    getInterpolateFutureDiCurve(collectionName){  
 
         const project = {curveInterp:1,dtReferencia:1};
 

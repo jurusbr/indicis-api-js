@@ -20,11 +20,16 @@ class IndicisController{
 
         let dao = new IndicisDAO();                                          
 
-        if(req.query.days){
+        if(req.query.days || req.query.interpolate){
             dao.getInterpolateFutureDiCurve(collectionName,req.query.days).then( (curve) => {
 
-                let filtered = curve.curveInterp.filter( (i) => i.day < req.query.days );
-                res.json(filtered);
+                if(req.query.days){
+                    let filtered = curve.curveInterp.filter( (i) => i.day < req.query.days );
+                    res.json(filtered);
+                }else{
+                    res.json(curve.curveInterp);
+                }                
+                
             }).catch( (err) => {
                 console.log(err);
                 res.status(500).send(err);
