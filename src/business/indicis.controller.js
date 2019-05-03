@@ -1,4 +1,5 @@
 const IndicisDAO = require('./indicis.dao');
+const futuroConverter = require("../util/futuroConverter");
 
 class IndicisController{ 
 
@@ -24,11 +25,10 @@ class IndicisController{
             dao.getInterpolateFutureDiCurve(collectionName,req.query.days).then( (curve) => {
 
                 if(req.query.days){
-                    let filtered = curve.curveInterp.filter( (i) => i.day < req.query.days );
-                    res.json(filtered);
-                }else{
-                    res.json(curve.curveInterp);
-                }                
+                    curve.curveInterp = curve.curveInterp.filter( (i) => i.day < req.query.days );
+                }
+                
+                res.json(curve);
                 
             }).catch( (err) => {
                 console.log(err);
@@ -36,6 +36,12 @@ class IndicisController{
             } );
         }else{
             dao.getFutureDiCurve(collectionName).then( (curve) => {
+                //Mudar first para last curve
+                curve[0].curve = curve[0].curve.map((i) => {
+                    return {date:futuroConverter.fromCodeToDate(i.code), ...i}
+                });
+
+
                 res.json(curve);
             }).catch( (err) => {
                 res.status(500).send(err);
