@@ -28,22 +28,34 @@ class IndicisController{
                     curve.curveInterp = curve.curveInterp.filter( (i) => i.day < req.query.days );
                 }
                 
-                res.json(curve);
+                res.json(curve.curveInterp);
                 
             }).catch( (err) => {
                 console.log(err);
                 res.status(500).send(err);
             } );
         }else{
+            console.log("Buscando curva do di futuro");
             dao.getFutureDiCurve(collectionName).then( (curve) => {
                 //Mudar first para last curve
-                curve[0].curve = curve[0].curve.map((i) => {
-                    return {date:futuroConverter.fromCodeToDate(i.code), ...i}
-                });
+                console.log(curve[0].curve);
+                
+                let aux = [];
 
+                for (var key in curve[0].curve) {
+                    if (curve[0].curve.hasOwnProperty(key)) {
+                        aux.push({code:key, date:futuroConverter.fromCodeToDate(key), value:parseFloat(curve[0].curve[key])})
+                    }
+                  }
 
-                res.json(curve);
+                  aux = aux.sort( (a,b) => parseInt(a.date) - parseInt(b.date));
+                
+                curve[0].curve=aux;
+
+                res.json(aux);
             }).catch( (err) => {
+                console.log("Erro na busca");
+                console.log(err);
                 res.status(500).send(err);
             } );
         }        

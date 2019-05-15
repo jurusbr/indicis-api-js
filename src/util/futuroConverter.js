@@ -22,7 +22,7 @@ class FuturoConverter{
         const coreCode = code.substring(3);
         const month = coreCode.charAt(0);
         const year = code.substring(4);
-        return `${this.months[month.toUpperCase()]}-${year}`
+        return `20${year}${this.months[month.toUpperCase()]}`
 	}
 }
 module.exports = new FuturoConverter();
